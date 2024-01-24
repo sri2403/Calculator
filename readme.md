@@ -9,4 +9,6 @@
 - **Percentage Calculation:** Calculate percentages.
 - **Decimal Input:** Input decimal numbers.
 - **Clear Button (C):** Reset the input.
-- **X:** Remove the last input character.
+- **x:** Remove the last input character.
+
+op=>https://calculator-sri2403.netlify.app/
