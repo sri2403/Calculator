@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .container {
+            border: 2px solid black;
+            padding: 30px;
+            margin-top: 50px;
+            max-width: 350px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .row button {
+            flex: 1;
+            padding: 15px;
+            margin-right: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom:10px;
+            transition: background-color 0.3s ease;
+        }
+        @media screen and (max-width: 576px) {
+            form {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Calculator</h2>
+            <input type="text" id="input" class="form-control mb-3" placeholder="0">
+            <div id="one">
+                <div class="row">
+                    <button class="col-3 btn operator" onclick="clr()" style="background-color:rgb(218, 248, 81);color:red">C</button>
+                    <button class="col-3 btn operator" onclick="symbol('%')" style="background-color:rgb(218, 248, 81);">%</button>
+                    <button class="col-3 btn operator" onclick="symbol('x')"style="background-color:rgb(218, 248, 81);">x</button>
+                    <button class="col-3 btn operator" onclick="symbol('/')" style="background-color:rgb(218, 248, 81);">/</button>
+                </div>
+                <div class="row">
+                    <button class="col-3 btn number" onclick="number('7')" style="background-color:rgb(172, 174, 163);">7</button>
+                    <button class="col-3 btn number" onclick="number('8')" style="background-color:rgb(172, 174, 163);">8</button>
+                    <button class="col-3 btn number" onclick="number('9')" style="background-color:rgb(172, 174, 163);">9</button>
+                    <button class="col-3 btn operator" onclick="symbol('*')" style="background-color:rgb(218, 248, 81);">*</button>
+                </div>
+                <div class="row">
+                    <button class="col-3 btn number" onclick="number('4')" style="background-color:rgb(172, 174, 163);">4</button>
+                    <button class="col-3 btn number" onclick="number('5')" style="background-color:rgb(172, 174, 163);">5</button>
+                    <button class="col-3 btn number" onclick="number('6')" style="background-color:rgb(172, 174, 163);">6</button>
+                    <button class="col-3 btn operator" onclick="symbol('-')" style="background-color:rgb(218, 248, 81);">-</button>
+                </div>
+                <div class="row">
+                    <button class="col-3 btn number" onclick="number('1')" style="background-color:rgb(172, 174, 163);">1</button>
+                    <button class="col-3 btn number" onclick="number('2')" style="background-color:rgb(172, 174, 163);">2</button>
+                    <button class="col-3 btn number" onclick="number('3')" style="background-color:rgb(172, 174, 163);">3</button>
+                    <button class="col-3 btn operator" onclick="symbol('+')" style="background-color:rgb(218, 248, 81);">+</button>
+                </div>
+                <div class="row">
+                    <button class="col-3 btn number" onclick="number('00')" style="background-color:rgb(172, 174, 163);">00</button>
+                    <button class="col-3 btn number" onclick="number('0')" style="background-color:rgb(172, 174, 163);">0</button>
+                    <button class="col-3 btn number" onclick="decimal('.')" style="background-color:rgb(172, 174, 163);">.</button>
+                    <button class="col-3 btn equals" onclick="calculate()" style="background-color:rgb(229, 129, 36);">=</button>
+                </div>
+                
+                <script>
+                    
+                    function clr(){
+                        document.getElementById("input").value = '';
+                    }
+                    function symbol(s){
+                        if (s === 'x') {
+                            let inputValue = document.getElementById("input").value;
+                            document.getElementById("input").value = inputValue.substring(0, inputValue.length - 1);
+                        } 
+                        else {
+                            document.getElementById("input").value += s;
+                        }
+                    }
+                    function number(n){
+                        document.getElementById("input").value+=n;
+                    }
+                    function decimal(d){
+                        document.getElementById("input").value+=d;
+                    }
+                    function calculate(){
+                        const expression = document.getElementById('input').value;
+                        const result = eval(expression);
+                        document.getElementById('input').value = Number.isFinite(result)?result:"error";
+                    }
+
+                    document.addEventListener('keydown', function (event) {
+                        if (!(event.key >= '0' && event.key <= '9')) {
+                            alert('Only numbers are allowed!');
+                        }
+                    });
+                </script>
+            </div>
+    </div>
+</body>
+</html>
